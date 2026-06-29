@@ -1,0 +1,31 @@
+<div id="product-filter-sidebar" class="mobile-sidebar right-sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-title">Filters</div>
+        <button id="close-filter-sidebar" class="close-sidebar-btn">&times;</button>
+    </div>
+    <div class="sidebar-content" style="padding: 0 25px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 30px;">
+        <div class="filter-group-mobile">
+            <h3 style="color: var(--orange); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 800;">Sort By</h3>
+            <ul id="sort-list-mobile" class="filter-list-mobile" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                <li data-value="Featured">Featured</li>
+                <li data-value="Price: Low to High">Price: Low to High</li>
+                <li data-value="Price: High to Low">Price: High to Low</li>
+                <li data-value="Newest">Newest</li>
+                <li data-value="Bulk Deals Only" style="color: var(--orange); font-weight: 800; border-style: dashed;">📦 Bulk Deals Only</li>
+            </ul>
+        </div>
+        <div class="filter-group-mobile">
+            <h3 style="color: var(--orange); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 800;">Categories</h3>
+            <ul id="category-list-mobile" class="filter-list-mobile" style="list-style: none; display: flex; flex-direction: column; gap: 8px;"></ul>
+        </div>
+        <div class="filter-group-mobile">
+            <h3 style="color: var(--orange); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 800;">Brands</h3>
+            <ul id="brand-list-mobile" class="filter-list-mobile" style="list-style: none; display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto;"></ul>
+        </div>
+    </div>
+    <div class="sidebar-footer-mobile" style="border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px;">
+        <button id="clear-mobile-filters" class="btn secondary" style="width: 100%; border-color: var(--orange); color: var(--orange);">Clear All Filters</button>
+        <button id="apply-mobile-filters" class="btn primary" style="width: 100%;">Apply Filters</button>
+    </div>
+</div>
+<div id="filter-sidebar-overlay" class="sidebar-overlay"></div>

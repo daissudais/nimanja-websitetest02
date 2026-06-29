@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimanja Petshop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles-improved.css" />
+  <link rel="stylesheet" href="search.css" />
+  <link rel="stylesheet" href="products-improved.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="images/Logo-01.png" alt="PawNinja Logo" class="logo-img">
+      </a>
+
+      <nav class="main-nav">
+                <a href="index.html">HOME</a>
+                <a href="product.html" class="active" >PRODUCTS</a>
+                <a href="our_store.html">OUR STORE</a>
+                <a href="brands.html">BRANDS</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="about_us.html">ABOUT US</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-bar-top">
+      <div class="container top-controls-flex">
+        
+        <form class="filter-search">
+          <input type="text" id="product-search-input" placeholder="Search by name or category..." autocomplete="off" />
+          <button type="submit">Search</button>
+        </form>
+
+        <button type="button" id="mobile-filter-trigger" class="mobile-filter-btn" aria-label="Open Filters">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+          <span>Filter</span>
+          <span id="filter-badge" class="filter-count-badge">0</span>
+        </button>
+
+        <div class="sort-dropdown-wrapper">
+    <button class="sort-dropdown-trigger" id="sort-trigger-btn">
+        <span id="current-sort-label">Sort By: Featured</span>
+        <span class="arrow-icon">▼</span>
+    </button>
+    <ul id="sort-list" class="sort-dropdown-menu">
+        <li class="active" data-value="Featured">Featured</li>
+        <li data-value="Price: Low to High">Price: Low to High</li>
+        <li data-value="Price: High to Low">Price: High to Low</li>
+        <li data-value="Newest">Newest</li>
+        <li data-value="Bulk Deals Only" style="border-top: 1px dashed var(--border); color: var(--orange); font-weight: 700;">📦 Bulk Deals Only</li>
+    </ul>
+</div>
+
+      </div>
+    </section>
+
+    <section class="products-layout-container">
+      <div class="container main-flex">
+        
+        <aside class="filter-sidebar">
+          
+          <div class="filter-group">
+            <h3>Categories</h3>
+            <ul class="filter-list" id="category-list">
+              <!-- Categories will be populated dynamically from Firebase -->
+            </ul>
+          </div>
+
+          <div class="filter-group">
+            <h3>Brands</h3>
+            <ul class="filter-list" id="brand-list">
+              <li class="active" data-value="All Brands">All Brands</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="products-page-content">
+          <div class="catalog-status">
+            <span id="page-counter-top">Page 1 of 1</span>
+          </div>
+
+          <div id="catalog-container" class="grid-layout">
+          </div>
+
+          <div class="pagination"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <a class="logo footer-logo" href="#">
+          <img src="images/Logo-01.png" alt="Nimanja" style="height: 40px; margin-bottom: 10px;">
+        </a>
+        <p>A warm and playful pet shop for dogs, cats, and the people who love them.</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="product.html">All Products</a>
+        <a href="product.html?category=Cat Food">Cat Food</a>
+        <a href="product.html?category=Dog Food">Dog Food</a>
+        <a href="product.html?category=Treats">Treats</a>
+        <a href="product.html?category=Cage">Cage</a>
+      </div>
+      <div>
+        <h3>Visit Us</h3>
+        <a href="our_store.html">Nimanja Stores</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <!-- New Social Media Column Stack -->
+      <div>
+        <h3>Follow our social media</h3>
+        <div class="footer-social-list">
+          <a href="https://www.facebook.com/nimanjamalaysia/?locale=ms_MY" class="social-link-item">
+            <img src="images\social meadia icon\fb.png" alt="Facebook" class="social-img-icon">
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/nimanjamalaysia/?hl=en" class="social-link-item">
+            <img src="images\social meadia icon\ig.png" alt="Instagram" class="social-img-icon">
+            <span>Instagram</span>
+          </a>
+          <a href="#" class="social-link-item">
+            <img src="images\social meadia icon\tt.png" alt="TikTok" class="social-img-icon">
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>©2026 Nimanja Malaysia Petshop</p>
+    </div>
+  </footer>
+
+  <script type="module" src="product.js"></script>
+  <script src="global-sidebar.js"></script>
+  <script type="module" src="analytics.js"></script>
+  
+</body>
+</html>
