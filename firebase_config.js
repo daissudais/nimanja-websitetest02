@@ -1,6 +1,9 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+// firebase_config.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+// FIXED: Imported from the correct web library and included both getMessaging AND getToken
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
 
 // Primary Configuration (Nimanja Products)
 const firebaseConfig = {
@@ -28,4 +31,28 @@ const analytics = getAnalytics(app);
 const contactApp = initializeApp(contactFirebaseConfig, "contactApp");
 const contactDb = getDatabase(contactApp);
 
-export { app, db, analytics, contactDb };
+// Initialize Messaging
+const messaging = getMessaging(app);
+
+// FIXED: Wrapped token retrieval in an async function to prevent top-level await errors
+export const requestNotificationToken = async () => {
+  try {
+    const currentToken = await getToken(messaging, { 
+      vapidKey: "BKa-hzG6WQms5E3DN8WVvCwU_toIrgFhR16wBW2lH3uISK6SibvXcXpmDlkRP1YClPMDQqSekUH4gD50HwruT4g" 
+    });
+    
+    if (currentToken) {
+      console.log("FCM Token obtained successfully:", currentToken);
+      return currentToken;
+    } else {
+      console.warn("No registration token available. Request permission to generate one.");
+      return null;
+    }
+  } catch (error) {
+    console.error("An error occurred while retrieving token:", error);
+    return null;
+  }
+};
+
+// Export instances for use across your application
+export { app, db, analytics, contactDb, messaging };
