@@ -337,13 +337,11 @@
   <script type="module" src="home-search.js"></script>
   <script src="global-sidebar.js"></script>
   <script type="module" src="analytics.js"></script>
-  <script type="module" src="firebase_config.js"></script>
 
 
 
 
 
-<!-- 1. KEEP THIS LOGIC AS A STANDARD SCRIPT -->
   <script>
     // --- Automatic Slider Logic for Home Page Banner ---
     let currentHomeSlide = 0;
@@ -359,8 +357,10 @@
         currentHomeSlide = 0;
       }
 
+      // Moves the inner track horizontally by 33.333% segments
       wrapper.style.transform = `translateX(-${currentHomeSlide * 33.333}%)`;
 
+      // Update indicator highlights classes
       dots.forEach((dot, index) => {
         if (index === currentHomeSlide) {
           dot.classList.add('active');
@@ -370,65 +370,8 @@
       });
     }
 
+    // Triggers rotation sequence automatically every 3000ms
     setInterval(autoPlayHomeSlides, 3000);
-  </script>
-
-  <!-- 2. CHANGED TO type="module" TO ALLOW IMPORTS -->
-  <script type="module">
-    // FIXED: Imported getMessaging and onMessage alongside your token request
-    import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
-    import { requestNotificationToken } from './firebase_config.js';
-
-    // Get the messaging instance initialized in your app context
-    const messaging = getMessaging();
-
-    // FIXED: Added foreground notification handler
-    onMessage(messaging, (payload) => {
-      console.log('Foreground message received: ', payload);
-      alert(`📢 Notification Received!\nTitle: ${payload.notification?.title || 'No Title'}\nBody: ${payload.notification?.body || 'No Body'}`);
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      // If permission is already granted, hide the button
-      if (Notification.permission === 'granted') {
-        console.log("User already granted notification permissions.");
-        return; 
-      }
-
-      // 1. Create the button element
-      const notifyBtn = document.createElement('button');
-      notifyBtn.innerText = '🔔 Enable Notifications';
-      
-      // 2. Style the button so it looks nice and floats in the bottom corner
-      Object.assign(notifyBtn.style, {
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        padding: '12px 20px',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '50px',
-        cursor: 'pointer',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-        zIndex: '9999',
-        fontSize: '14px',
-        fontWeight: 'bold'
-      });
-
-      // 3. Add the click action
-      notifyBtn.addEventListener('click', () => {
-        requestNotificationToken().then((token) => {
-          if (token) {
-            alert("Awesome! You will now receive notifications.");
-            notifyBtn.remove(); // Remove the button once they accept
-          }
-        });
-      });
-
-      // 4. Inject the button into your website page
-      document.body.appendChild(notifyBtn);
-    });
   </script>
 
 
